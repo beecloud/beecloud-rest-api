@@ -1,19 +1,8 @@
 ## BeeCloud RESTful API
 ## 境外支付 
 
-## 1. Server 列表
-#### Mode : *HTTPS*
-
-所有server可无差别使用，也可随机使用，请根据需要选择.
-
-域名 | 位置
----- | ----
-apibj.beecloud.cn| 北京 
-apisz.beecloud.cn| 深圳 
-apiqd.beecloud.cn| 青岛 
-apihz.beecloud.cn| 杭州 
-
-<BR>
+## 1. API请求地址
+#### https://api.beecloud.cn
 
 ## 2. 支付
 
