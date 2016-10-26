@@ -25,7 +25,7 @@
 2. 选择您需要的支付渠道及产品， 自助开通或**通过BeeCloud代申请服务**
 3. [帮助中心](https://help.beecloud.cn/) &ensp;&ensp; [错误码对照表](https://github.com/beecloud/beecloud-rest-api/tree/master/error_code)
 
-## 1. API请求地址
+## API请求地址
 ### https://api.beecloud.cn
 
 ## BeeCloud企业打款 - 打款到银行卡
