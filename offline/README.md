@@ -253,6 +253,7 @@ refund_reason | String | 退款的原因说明 | 正常退款 | 否
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 operator_id | String | 商户的操作员编号 | OP001 | 否
 store_id | String | 商户的门店编号 | NJ_S_001 | 否
+refund_account | Integer | 退款资金来源 | 1:可用余额退款 0:未结算资金退款（默认使用未结算资金退款） | 1 | 否
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
