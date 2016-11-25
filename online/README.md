@@ -38,6 +38,8 @@ analysis | Map | 分析数据 | 用于统计分析的数据，将会在控制台
 return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径，**<mark>中间请勿有#,?等字符</mark>** | http://beecloud.cn/returnUrl.jsp | 当channel参数为 ALI\_WEB 或 ALI\_QRCODE 或  UN\_WEB 或 JD\_WAP 或 JD\_WEB时为必填
 notify_url | String | 商户自定义回调地址 | 商户可通过此参数设定回调地址，此地址会覆盖用户在控制台设置的回调地址。**<mark>必须以`http://`或`https://`开头</mark>** | http://beecloud.cn/notifyUrl.jsp
 bill_timeout | Integer | 订单失效时间 | 必须为非零正整数，单位为秒，建议最短失效时间间隔必须<mark>大于</mark>360秒 | 360 | 否, **<mark>京东(JD)不支持该参数。</mark>** 
+card_no| String | 银行卡号 | 银行卡号 | 8888888888888888 | 否，当渠道为BC_EXPRESS时，才为选填，其他渠道不要
+limit_credit | Boolean | 禁用信用卡 | 禁用信用卡 | true/false | 否
 
 
 > 注：channel的参数值含义：  
