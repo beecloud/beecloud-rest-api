@@ -6,20 +6,8 @@ BeeCloud REST API文档的官方GitHub地址是 [https://github.com/beecloud/bee
 
 ## Part1. 文档
 
-### 1. Server 列表
-#### Mode : *HTTPS*
-
-所有server可无差别使用，也可随机使用，请根据需要选择.
-
-域名 | 位置
----- | ----
-apidynamic.beecloud.cn| 随机DNS解析到以下一台上
-apibj.beecloud.cn| 北京 
-apisz.beecloud.cn| 深圳 
-apiqd.beecloud.cn| 青岛 
-apihz.beecloud.cn| 杭州 
-
-<BR>
+### 1. API请求地址
+#### https://api.beecloud.cn
 
 ### 2. 支付
 
@@ -265,6 +253,7 @@ refund_reason | String | 退款的原因说明 | 正常退款 | 否
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 operator_id | String | 商户的操作员编号 | OP001 | 否
 store_id | String | 商户的门店编号 | NJ_S_001 | 否
+refund_account | Integer | 退款资金来源 | 1:可用余额退款 0:未结算资金退款（默认使用未结算资金退款） | 1 | 否
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:

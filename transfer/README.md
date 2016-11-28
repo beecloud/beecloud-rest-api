@@ -1,6 +1,5 @@
 # BeeCloud 企业打款 REST API
 
-<br>
 ## 简介
 
 1. 场景  
@@ -20,28 +19,15 @@
    
  - 批量（批量目前只支持支付宝）
 
-
-<br>	
 ## 使用前准备
 
 1. 注册成为BeeCloud用户并通过企业认证
 2. 选择您需要的支付渠道及产品， 自助开通或**通过BeeCloud代申请服务**
 3. [帮助中心](https://help.beecloud.cn/) &ensp;&ensp; [错误码对照表](https://github.com/beecloud/beecloud-rest-api/tree/master/error_code)
 
-<br>
-## Server 列表
-#### Mode : HTTPS
-所有server可无差别使用，也可随机使用，请根据需要选择.
+## API请求地址
+### https://api.beecloud.cn
 
-域名 | 位置
----- | ----
-apidynamic.beecloud.cn | 随机DNS解析到以下一台上
-apibj.beecloud.cn| 北京 
-apisz.beecloud.cn| 深圳 
-apiqd.beecloud.cn| 青岛 
-apihz.beecloud.cn| 杭州
-
-<br>
 ## BeeCloud企业打款 - 打款到银行卡
 
 ### URL: */2/rest/bc_transfer/*
@@ -86,8 +72,6 @@ result_code | result_msg             | 含义
 14             | RUNTIME\_ERROR         | 运行时错误
 15             | NETWORK\_ERROR         | 网络异常错误
 
-</br>
-<br>
 ### BeeCloud企业打款 - 支持银行
 
 ### URL: */2/rest/bc_transfer/banks*
@@ -119,7 +103,6 @@ result_code | result_msg             | 含义
 4              | MISS\_PARAM            | 缺少必填参数
 5              | PARAM\_INVALID         | 参数不合法
 
-</br>
 ## 微信企业打款/微信红包/支付宝单笔打款
 
 ### URL: */2/rest/transfer/*

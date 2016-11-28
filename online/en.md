@@ -11,21 +11,8 @@ The BeeCloud REST API provides a shortcut to start an online Third Party Payment
 
 We also provide an online webpage for understanding our API - [tesing our API](https://beecloud.cn/rest/#/api/bill)
 
-## 1.Server List
-
-#### Protocal: *HTTPS*
-
-Every Server performs the same.
-
-Domain| Location
----- | ----
-apidynamic.beecloud.cn | randomly one IP of below’s
-apibj.beecloud.cn| BeiJing
-apisz.beecloud.cn| ShenZhen
-apiqd.beecloud.cn| QingDao 
-apihz.beecloud.cn| HangZhou
-
-<BR>
+## 1. API URL
+#### https://api.beecloud.cn
 
 ## 2.Bill - Start payment 
 Use this API to fetch parameters for staring each Third Party's payment. It veries in code（javacript api or html form submit）with each Third Party to jump to their pages. But do not worry, we also provide demos for that.
