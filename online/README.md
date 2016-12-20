@@ -40,7 +40,7 @@ notify_url | String | 商户自定义回调地址 | 商户可通过此参数设�
 bill_timeout | Integer | 订单失效时间 | 必须为非零正整数，单位为秒，建议最短失效时间间隔必须<mark>大于</mark>360秒 | 360 | 否, **<mark>京东(JD)不支持该参数。</mark>** 
 card_no| String | 银行卡号 | 银行卡号 | 8888888888888888 | 否，当渠道为BC_EXPRESS时，才为选填，其他渠道不要
 limit_credit | Boolean | 禁用信用卡 | 禁用信用卡 | true/false | 否
-bank\_name | string | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
+bank | string | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
 card\_type| string | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用卡；2代表借记卡 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
 
 > 注：channel的参数值含义：  
