@@ -42,6 +42,7 @@ card_no| String | 银行卡号 | 银行卡号 | 8888888888888888 | 否，当渠�
 limit_credit | Boolean | 禁用信用卡 | 禁用信用卡 | true/false | 否
 bank | string | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
 card\_type| string | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用卡；2代表借记卡 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
+store_id | string | 门店号| 门店号 | 卡门店号 | 选填
 
 > 注：channel的参数值含义：  
 WX\_APP: 微信手机原生APP支付  
