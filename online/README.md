@@ -695,10 +695,11 @@ refund\_result  | Bool         | 订单是否已经退款
 
 认证支付分为三步。
 
-- 1.发起支付，传入支付参数，获取token，支付记录的id，且收到短信验证码。api参考上面“2 支付”，注意:在optional中传入phone_no(手机号)，card_no（银行卡号），id_no（身份证号），customer_name（银行卡持有者姓名）等四个要素，或者传入token（第一次发起支付时返回的授权码）一个要素
-- 2.确认支付，传入token,短信验证码，支付记录的id
-- 3.接受webhook，更新订单状态
+- 1.发起支付，传入支付参数，获取token，支付记录的id，且收到短信验证码。api参考上面“2 支付”，注意:在optional中传入phone_no(手机号)，card_no（银行卡号），id_no（身份证号），customer_name（银行卡持有者姓名）等四个要素，或者传入token（第一次发起支付时返回的授权码）一个要素。channel为BC\_EXPRESS
+- 2.确认支付，传入token,短信验证码，支付记录的id, 接口如下
+- 3.接受webhook，更新订单状态，参考webhook文档
 
+#### 确认支付接口
 #### URL:   */2/rest/bill/confirm*
 #### Method: *POST*
 #### 请求参数格式: *JSON: Map*
