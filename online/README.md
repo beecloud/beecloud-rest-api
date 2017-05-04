@@ -43,6 +43,8 @@ limit_credit | Boolean | 禁用信用卡 | 禁用信用卡 | true/false | 否
 bank | string | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
 card\_type| string | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用卡；2代表借记卡 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
 store_id | string | 门店号| 门店号 | 卡门店号 | 选填
+buyer\_id | string | 购买者id| 购买者id | 购买者id | 选填
+seller\_id | string | 商家id| 商家id | 商家id | 选填
 
 > 注：channel的参数值含义：  
 WX\_APP: 微信手机原生APP支付  
@@ -695,7 +697,7 @@ refund\_result  | Bool         | 订单是否已经退款
 
 认证支付分为三步。
 
-- 1.发起支付，传入支付参数，获取token，支付记录的id，且收到短信验证码。api参考上面“2 支付”，注意:在optional中传入phone_no(手机号)，card_no（银行卡号），id_no（身份证号），customer_name（银行卡持有者姓名）等四个要素，或者传入token（第一次发起支付时返回的授权码）一个要素。channel为BC\_EXPRESS
+- 1.发起支付，传入支付参数，获取token，支付记录的id，且收到短信验证码。api参考上面“2 支付”，注意:在optional中传入phone_no(手机号)，card_no（银行卡号），id_no（身份证号），customer_name（银行卡持有者姓名）等四个要素，或者传入token（第一次发起支付时返回的授权码）一个要素；channel为BC\_EXPRESS；buyer_id必填，用于标识一个用户，id必须唯一
 - 2.确认支付，传入token,短信验证码，支付记录的id, 接口如下
 - 3.接受webhook，更新订单状态，参考webhook文档
 
