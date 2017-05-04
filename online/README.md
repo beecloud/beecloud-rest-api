@@ -690,3 +690,40 @@ total\_fee | Integer | 订单金额，单位为分
 message\_detail | String         | 渠道详细信息
 revert\_result  | Bool         | 订单是否已经撤销
 refund\_result  | Bool         | 订单是否已经退款
+
+## 12. 认证支付(需要开通)
+
+认证支付分为三步。
+
+- 1.发起支付，传入支付参数，获取token，支付记录的id，且收到短信验证码。api参考上面“2 支付”，注意:在optional中传入phone_no(手机号)，card_no（银行卡号），id_no（身份证号），customer_name（银行卡持有者姓名）等四个要素，或者传入token（第一次发起支付时返回的授权码）一个要素
+- 2.确认支付，传入token,短信验证码，支付记录的id
+- 3.接受webhook，更新订单状态
+
+#### URL:   */2/rest/bill/confirm*
+#### Method: *POST*
+#### 请求参数格式: *JSON: Map*
+
+#### 请求参数详情:
+- 以下为公共参数：
+
+参数名 | 类型 | 含义 | 描述 | 示例 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+token | String | 渠道返回的token | 渠道返回的token | 09999950c062f89d8cf2b6eb | 是
+bc_bill_id | String | BeeCloud生成的唯一支付记录id | BeeCloud生成的唯一支付记录id | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+verify_code | String | 短信验证码 | 短信验证码 | 666666 | 是
+
+
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息，有错误时，不会返回pay结果
