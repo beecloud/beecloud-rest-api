@@ -99,9 +99,8 @@ code_url | String | 二维码地址
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 channel_type | String | 具体条形码支付类型，ALI\_SCAN或者WX\_SCAN
-
-</br>
-
+  
+  
 ### 3. 订单状态查询
 
 #### URL:   */2/rest/offline/bill/status*
@@ -132,7 +131,8 @@ err\_detail  | String | 具体错误信息
 pay_result | Bool | 订单是否成功
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
-
+  
+  
 ### 4. 撤销订单
 
 #### URL:   */2/rest/offline/bill/{bill_no}*
@@ -164,8 +164,8 @@ err\_detail  | String | 具体错误信息
 revert_status | bool | 订单是否取消	
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
-
-
+  
+  
 ### 5. 订单查询
 
 #### URL:   */2/rest/bills*
@@ -230,8 +230,8 @@ optional | String | 附加数据,用户自定义的参数，将会在webhook通�
 message_detail | String         | 渠道详细信息， 当need\_detail传入true时返回
 revert_result  | Bool         | 订单是否已经撤销
 refund_result  | Bool         | 订单是否已经退款
-
-
+  
+  
 ### 6.  退款
 
 退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
@@ -284,7 +284,7 @@ result\_code | result\_msg                | 含义
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度
 13          | NO\_SUCH\_REFUND           | 没有该退款记录
 
-
+  
 
 ## Part2. 应用场景简介
 

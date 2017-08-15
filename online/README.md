@@ -237,8 +237,8 @@ url | String | 支付页跳转地址
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 orderInfo | String | 百度支付order info
+  
 
-</br>
 ## 3. 退款
 
 退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的实付金额，如果是小于，则表示部分退款.
@@ -296,8 +296,7 @@ result\_code | result\_msg                | 含义
 ---- | ---- | ----
 url | String | 支付宝退款地址，需用户在支付宝平台上手动输入支付密码处理
 
-
-</br>
+  
 ## 4. 预退款批量审核
 
 批量审核接口仅支持预退款，批量审核分为批量驳回和批量同意。
@@ -345,8 +344,8 @@ result_map | Map<String, String>; |批量同意单笔结果集合，key:单笔�
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 url | String | 支付宝退款地址，需用户在支付宝平台上手动输入支付密码处理
-
-</br>
+  
+  
 ## 5. 订单查询
 
 #### URL:   */2/rest/bills*
@@ -411,8 +410,8 @@ optional | String | 附加数据,用户自定义的参数，将会在webhook通�
 message_detail | String         | 渠道详细信息， 当need_detail传入true时返回
 revert_result  | Bool         | 订单是否已经撤销
 refund_result  | Bool         | 订单是否已经退款
-
-</br>
+  
+  
 ## 6. 订单总数查询
 
 #### URL:   */2/rest/bills/count*
@@ -452,8 +451,8 @@ err\_detail  | String | 具体错误信息
 count | Integer | 查询订单结果数量
 
 - 返回码和返回信息取值及含义参见支付公共返回参数部分
-
-<br>
+  
+  
 ## 7. 退款查询
 
 #### URL:   */2/rest/refunds*
@@ -516,8 +515,8 @@ result     | bool        | 退款是否成功
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 message\_detail | String         | 渠道详细信息， 当need_detail传入true时返回
 create\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
-
-<br>
+  
+  
 ## 8. 退款总数查询
 
 #### URL:   */2/rest/refunds/count*
@@ -559,9 +558,8 @@ err\_detail  | String | 具体错误信息
 count | Integer | 查询退款结果数量
 
 - 返回码和返回信息取值及含义参见支付公共返回参数部分
-
-
-<br>
+  
+  
 ## 9. 退款状态更新
 
 退款状态更新接口提供查询退款状态以更新退款状态的功能，用于对退款后不发送回调的渠道（WX、YEE、KUAIQIAN、BD）退款后的状态更新。
@@ -596,7 +594,8 @@ err\_detail  | String | 具体错误信息
 refund\_status | String | 退款状态
 
 - 返回码和返回信息取值及含义参见支付公共返回参数部分
-
+  
+  
 ## 10. 退款订单查询(指定ID)
 
 #### URL:   */2/rest/refund/{id}*
@@ -646,7 +645,8 @@ total_fee | Integer | 实付金额，单位为分
 refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
 message\_detail | String         | 渠道详细信息
-
+  
+  
 ## 11. 支付订单查询(指定ID)
 
 #### URL:   */2/rest/bill/{id}*
@@ -699,7 +699,8 @@ coupon\_id | String | 卡券ID，没有用到返回null
 message\_detail | String         | 渠道详细信息
 revert\_result  | Bool         | 订单是否已经撤销
 refund\_result  | Bool         | 订单是否已经退款
-
+  
+  
 ## 12. 认证支付(需要开通)
 
 认证支付分为三步。
