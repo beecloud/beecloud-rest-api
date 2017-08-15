@@ -398,7 +398,7 @@ id      | String       | 订单记录的唯一标识，可用于查询单笔记�
 bill\_no      | String       | 订单号
 bill\_fee | Integer         | 订单金额，单位为分
 total\_fee    | Integer         | 实付金额，单位为分
-discount | Integer         | 优惠券金额，单位为分
+discount | Integer         | 优惠金额，单位为分
 coupon\_id | String | 卡券ID，没有用到返回null
 trade\_no    | String         | 渠道交易号， 当支付成功时有值
 channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
@@ -694,7 +694,7 @@ spay\_result | Bool| 订单是否成功
 title | String | 商品标题
 bill\_fee | Integer         | 订单金额，单位为分
 total\_fee    | Integer         | 实付金额，单位为分
-discount | Integer         | 优惠券金额，单位为分
+discount | Integer         | 优惠金额，单位为分
 coupon\_id | String | 卡券ID，没有用到返回null
 message\_detail | String         | 渠道详细信息
 revert\_result  | Bool         | 订单是否已经撤销
