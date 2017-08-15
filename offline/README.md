@@ -34,6 +34,7 @@ notify_url | String | 商户自定义回调地址 | 商户可通过此参数设�
 optional | Map | 附加数据 | 用户自定义的参数，将会在Webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 analysis | Map | 分析数据 | 用于统计分析的数据，将会在控制台的统计分析报表中展示，**<mark>用户自愿上传</mark>** | 包括以下基本字段：`os_name(系统名称，如"iOS"，"Android")` `os_version(系统版本，如"5.1")` `model(手机型号，如"iPhone 6")` `app_name(应用名称)` `app_version(应用版本号)` `device_id(设备ID)` `category(类别，用户可自定义，如游戏分发渠道，门店ID等)` `browser_name(浏览器名称)` `browser_version(浏览器版本)` | 否
 store_id | string | 门店号| 门店号 | 卡门店号 | 选填
+coupon\_id | string | 卡券id | 营销活动时使用 | 卡券id | 选填
 
 > 注1：channel的参数值含义：  
 WX\_NATIVE: 微信二维码支付   
@@ -215,7 +216,10 @@ bills | List<Map> | 订单列表
 ----          | ----         | ----
 id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no      | String       | 订单号
-total\_fee    | Integer         | 订单金额，单位为分
+bill\_fee | Integer         | 订单金额，单位为分
+total\_fee    | Integer         | 实付金额，单位为分
+discount | Integer         | 优惠券金额，单位为分
+coupon\_id | String | 卡券ID，没有用到返回null
 trade\_no    | String         | 渠道交易号， 当支付成功时有值
 channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
 sub_channel         | String       | 子渠道类型 WX\_APP、WX\_NATIVE、WX\_JSAPI、WX\_SCAN、ALI\_APP、ALI\_SCAN、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP

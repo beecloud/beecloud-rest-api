@@ -45,6 +45,7 @@ card\_type| string | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用�
 store_id | string | 门店号| 门店号 | 卡门店号 | 选填
 buyer\_id | string | 购买者id| 购买者id | 购买者id | 选填
 seller\_id | string | 商家id| 商家id | 商家id | 选填
+coupon\_id | string | 卡券id | 营销活动时使用 | 卡券id | 选填
 
 > 注：channel的参数值含义：  
 WX\_APP: 微信手机原生APP支付  
@@ -240,7 +241,7 @@ orderInfo | String | 百度支付order info
 </br>
 ## 3. 退款
 
-退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
+退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的实付金额，如果是小于，则表示部分退款.
 
 退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续调用审核接口，或者通过BeeCloud控制台的预退款界面，审核同意或者否决，才真正发起退款或者拒绝预退款。
 
@@ -260,7 +261,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+master\_secret)
 channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 否
 refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请自行确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 201506101035040000001 | 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
-refund_fee | Integer | 退款金额 | 必须为正整数，单位为分，必须小于或等于对应的已支付订单的total_fee | 1 | 是
+refund_fee | Integer | 退款金额 | 必须为正整数，单位为分，必须小于或等于对应的已支付订单的实付金额 | 1 | 是
 notify_url | String | 商户自定义退款回调地址 | 商户可通过此参数设定退款回调地址，此地址会覆盖用户在控制台设置的退款回调地址。**<mark>必须以`http://`或`https://`开头</mark>** | http://beecloud.cn/notifyUrl.jsp | 否
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 need_approval| Bool | 是否为预退款 | 预退款need_approval值传true,直接退款不传此参数或者传false | true | 否
@@ -396,7 +397,10 @@ bills | List<Map> | 订单列表
 ----          | ----         | ----
 id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no      | String       | 订单号
-total\_fee    | Integer         | 订单金额，单位为分
+bill\_fee | Integer         | 订单金额，单位为分
+total\_fee    | Integer         | 实付金额，单位为分
+discount | Integer         | 优惠券金额，单位为分
+coupon\_id | String | 卡券ID，没有用到返回null
 trade\_no    | String         | 渠道交易号， 当支付成功时有值
 channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
 sub_channel         | String       | 子渠道类型 WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、UN_WAP、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP(详见 2. 支付 附注）
@@ -502,7 +506,7 @@ refunds | List<Map> | 退款列表
 id      | String       | 退款记录的唯一标识，可用于查询单笔记录
 bill\_no    | String      | 订单号
 refund\_no  | String      | 退款号
-total\_fee  | Integer      | 订单金额，单位为分
+total\_fee  | Integer      | 实付金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
 channel    | String      | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、BD
@@ -638,7 +642,7 @@ create_time | Long | 退款创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 result | Bool| 退款是否成功
 title | String | 商品标题
-total_fee | Integer | 订单金额，单位为分
+total_fee | Integer | 实付金额，单位为分
 refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
 message\_detail | String         | 渠道详细信息
@@ -688,7 +692,10 @@ create\_time | Long | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 spay\_result | Bool| 订单是否成功
 title | String | 商品标题
-total\_fee | Integer | 订单金额，单位为分
+bill\_fee | Integer         | 订单金额，单位为分
+total\_fee    | Integer         | 实付金额，单位为分
+discount | Integer         | 优惠券金额，单位为分
+coupon\_id | String | 卡券ID，没有用到返回null
 message\_detail | String         | 渠道详细信息
 revert\_result  | Bool         | 订单是否已经撤销
 refund\_result  | Bool         | 订单是否已经退款
