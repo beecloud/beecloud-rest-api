@@ -29,7 +29,7 @@ BeeCloud提供在线模拟REST调用，方便开发者调试：[REST API测试](
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、UN\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP、BC\_GATEWAY、BC\_EXPRESS、BC\_APP、BC\_NATIVE、BC\_WX\_WAP、BC\_WX\_JSAPI、BC\_ALI\_QRCODE（详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_WAP、WX\_NATIVE、WX\_JSAPI、WX\_MINI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、UN\_WAP、APPLE、APPLE\_TEST、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP、BC\_GATEWAY、BC\_EXPRESS、BC\_APP、BC\_NATIVE、BC\_WX\_WAP、BC\_WX\_JSAPI、BC\_ALI\_QRCODE、BC\_ALI\_APP、BC\_ALI\_WAP、BC\_ALI\_WEB、BC\_WX\_APP、BC\_ALI\_JSAPI、BC\_WX\_MINI（详见附注）| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
@@ -40,21 +40,22 @@ notify_url | String | 商户自定义回调地址 | 商户可通过此参数设�
 bill_timeout | Integer | 订单失效时间 | 必须为非零正整数，单位为秒，建议最短失效时间间隔必须<mark>大于</mark>360秒 | 360 | 否, **<mark>京东(JD)不支持该参数。</mark>** 
 card_no| String | 银行卡号 | 银行卡号 | 8888888888888888 | 否，当渠道为BC_EXPRESS时，才为选填，其他渠道不要
 limit_credit | Boolean | 禁用信用卡 | 禁用信用卡 | true/false | 否
-bank | string | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
-card\_type| string | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用卡；2代表借记卡 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
-store_id | string | 门店号| 门店号 | 卡门店号 | 选填
-buyer\_id | string | 购买者id| 购买者id | 购买者id | 选填
-seller\_id | string | 商家id| 商家id | 商家id | 选填
-coupon\_id | string | 卡券id | 营销活动时使用 | 卡券id | 选填
+bank | String | 银行名字 | 银行名字 | 中国银行 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
+card\_type| String | 卡类型 | 卡类型 | 卡类型， 1和2. 1代表信用卡；2代表借记卡 | BC\_GATEWAY为京东渠道时，必填。其他渠道不填写
+store_id | String | 门店号| 门店号 | 卡门店号 | 选填
+buyer\_id | String | 购买者id| 购买者id | 购买者id | 选填
+seller\_id | String | 商家id| 商家id | 商家id | 选填
+coupon\_id | String | 卡券id | 营销活动时使用 | 卡券id | 选填
 
 > 注：channel的参数值含义：  
 WX\_APP: 微信手机原生APP支付  
+WX\_WAP: 微信移动网页支付  
 WX\_NATIVE: 微信公众号二维码支付  
 WX\_JSAPI: 微信公众号支付  
+WX\_MINI: 微信小程序支付  
 ALI\_APP: 支付宝手机原生APP支付  
 ALI\_WEB: 支付宝PC网页支付  
-ALI\_QRCODE: 支付宝内嵌二维码支付  
-ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付  
+ALI\_QRCODE: 支付宝内嵌二维码支付   
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
 UN\_WEB: 银联PC网页支付  
@@ -63,7 +64,7 @@ JD\_WAP: 京东移动网页支付
 JD\_WEB: 京东PC网页支付  
 YEE\_WAP: 易宝移动网页支付  
 YEE\_WEB: 易宝PC网页支付  
-YEE\_NOBANKCARDB: 易宝充值卡支付
+YEE\_NOBANKCARDB: 易宝充值卡支付  
 KUAIQIAN\_WAP: 快钱移动网页支付  
 KUAIQIAN\_WEB: 快钱PC网页支付  
 PAYPAL\_LIVE: PAYPAL生产环境支付   
@@ -71,15 +72,27 @@ PAYPAL\_SANDBOX: PAYPAL沙箱环境支付
 BD\_APP: 百度手机原生APP支付   
 BD\_WAP: 百度移动网页支付   
 BD\_WEB: 百度PC网页支付   
-BC\_GATEWAY: BC版网关支付
-BC\_EXPRESS: BC版快捷支付
-BC\_APP: BC版手机APP支付
-BC\_NATIVE: BC版微信二维码支付
-BC\_WX\_WAP: BC版微信手机WAP支付
-BC\_WX\_JSAPI: BC版微信公众号支付
-BC\_ALI\_QRCODE: BC版支付宝线下扫码支付
+BC\_GATEWAY: BC版网关支付  
+BC\_EXPRESS: BC版快捷支付  
+BC\_APP: BC版手机APP支付  
+BC\_NATIVE: BC版微信二维码支付  
+BC\_WX\_WAP: BC版微信手机WAP支付  
+BC\_WX\_JSAPI: BC版微信公众号支付  
+BC\_ALI\_QRCODE: BC版支付宝线下扫码支付  
+BC\_ALI\_APP: BC版支付宝手机原生APP支付  
+BC\_ALI\_WAP: BC版支付宝移动网页支付  
+BC\_ALI\_WEB: BC版支付宝PC网页支付  
+BC\_WX\_APP: BC版微信手机原生APP支付  
+BC\_ALI\_JSAPI: BC版支付宝服务窗支付  
+BC\_WX\_MINI: BC版微信小程序支付  
 
-- 以下是`微信公众号支付(WX\_JSAPI、BC\_WX\_JSAPI)`的**<mark>必填</mark>**参数
+- 以下是`微信移动网页支付(WX_WAP)及BC版微信手机WAP支付(BC_WX_WAP)`的**<mark>必填</mark>**参数
+
+参数名 | 类型 | 含义 | 例子
+---- | ---- | ---- | ----
+analysis| Map | 自定义参数 | {"ip":"58.110.23.35","key\_b":"value\_b"}
+
+- 以下是`微信公众号支付(WX_JSAPI、BC_WX_JSAPI)`的**<mark>必填</mark>**参数
 
 参数名 | 类型 | 含义 | 例子
 ---- | ---- | ---- | ----
@@ -113,6 +126,12 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 identity_id | String | 50位以内数字和/或字母组合，易宝移动网页（一键）支付用户唯一标识符，用于绑定用户一键支付的银行卡信息
+
+- 以下是`微信小程序支付(WX_MINI)`的**<mark>必填</mark>**参数
+
+参数名 | 类型 | 含义 | 例子
+---- | ---- | ---- | ----
+openid| String | 用户相对于微信公众号的唯一id | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb 
 
 - 以下是`易宝点卡支付(YEE_NOBANKCARD)`的**<mark>必填</mark>**参数
 
@@ -363,6 +382,10 @@ timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、UN\_WAP、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP、BC、BC\_GATEWAY、BC\_EXPRESS、BC\_APP、BC\_NATIVE、BC\_WX\_WAP、BC\_WX\_JSAPI、BC\_ALI\_QRCODE(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
+buyer_id | String | 购买者id | 发起支付时填写的购买者id |demo@beecloud.cn | 否
+seller_id | String | 商家id | 发起支付时填写的商家id |123456789 | 否
+store_id | String | 门店号 | 发起支付时填写的门店号 |123456789 | 否
+operator_id | String | 商户的操作员编号 | OP001 | 否
 spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
 refund_result | Bool | 订单是否已退款 | 标识订单是否已退款 | true | 否
 need_detail | Bool | 是否需要返回渠道详细信息 | 决定是否需要返回渠道的回调信息，true为需要 | true | 否
@@ -404,6 +427,10 @@ trade\_no    | String         | 渠道交易号， 当支付成功时有值
 channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
 sub_channel         | String       | 子渠道类型 WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、UN_WAP、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP(详见 2. 支付 附注）
 title         | String       | 订单标题
+buyer_id         | String       | 购买者id
+seller_id         | String       | 商家id
+store_id         | String       | 门店号
+operator_id | String | 商户的操作员编号
 spay\_result  | Bool         | 订单是否成功
 create_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
