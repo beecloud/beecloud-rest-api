@@ -142,6 +142,12 @@ cardpwd | String | 点卡密码，简称卡密
 frqid | String | 点卡类型编码，骏网一卡通(JUNNET),盛大卡(SNDACARD),神州行(SZX),征途卡(ZHENGTU),Q币卡(QQCARD),联通卡(UNICOM),久游卡(JIUYOU),易充卡(YICHONGCARD),网易卡(NETEASE),完美卡(WANMEI),搜狐卡(SOHU),电信卡(TELECOM),纵游一卡通(ZONGYOU),天下一卡通(TIANXIA),天宏一卡通(TIANHONG),32 一卡通(THIRTYTWOCARD)
 > 注： total_fee(订单金额)必须和充值卡面额相同，否则会造成**<mark>金额丢失(渠道方决定)</mark>**
 
+- 以下是`花呗支付(ALI_APP、ALI_WEB、ALI_QRCODE、ALI_WAP（老版不支持）、ALI_OFFLINE_QRCODE、ALI_SCAN)`的**<mark>必填</mark>**参数
+
+参数名 | 类型 | 含义 | 例子
+---- | ---- | ---- | ----
+optional | Map | 自定义参数 | {"hb\_fq\_num":"3","hb\_fq\_seller\_percent":"100"}  hb\_fq\_num仅支持传入3、6、12的字符串，hb\_fq\_seller\_percent仅支持传入100、0的字符串
+
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
