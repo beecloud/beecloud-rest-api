@@ -127,6 +127,34 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 ---- | ---- | ----
 identity_id | String | 50位以内数字和/或字母组合，易宝移动网页（一键）支付用户唯一标识符，用于绑定用户一键支付的银行卡信息
 
+- 以下是`支付宝新版本支付(ALI_WAP,ALI_WEB,ALI_APP)`的**<mark>必填</mark>**参数，参数必须放入到optional中
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+disable\_pay\_channels | String | 禁用渠道，用户不可用指定渠道支付,当有多个渠道时用“,”分隔,例如pcredit,moneyFund,debitCardExpress
+
+禁用渠道
+
+渠道名称 | 说明 
+---- | ---- 
+balance | 余额 
+moneyFund|余额宝
+coupon|红包
+pcredit|花呗
+pcreditpayInstallment|花呗分期
+creditCard|信用卡
+creditCardExpress|信用卡快捷
+creditCardCartoon|信用卡卡通
+credit_group|信用支付类型（包含信用卡卡通、信用卡快捷、花呗、花呗分期）
+debitCardExpress|借记卡快捷
+mcard|商户预存卡
+pcard|个人预存卡
+promotion|优惠（包含实时优惠+商户优惠）
+voucher|营销券
+point|积分
+mdiscount|商户优惠
+bankPay|网银
+
 - 以下是`微信小程序支付(WX_MINI)`的**<mark>必填</mark>**参数
 
 参数名 | 类型 | 含义 | 例子
