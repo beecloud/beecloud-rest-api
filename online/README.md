@@ -641,6 +641,7 @@ timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX、YEE、KUAIQIAN、BD | 是
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 是
+bill\_update\_flag | String | 标记位 | 只有该字段设置为1的时候才会更新订单表的total_refund_fee等退款信息 | 1 | 否
 
 #### 返回类型: *JSON, Map*
 #### 返回详情:
