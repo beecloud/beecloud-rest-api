@@ -800,3 +800,32 @@ verify_code | String | 短信验证码 | 短信验证码 | 666666 | 是
 result\_code | Integer| 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息，有错误时，不会返回pay结果
+
+
+## 13. 对账查询
+
+#### URL:   */2/rest/reconciliation*
+#### Method: *POST*
+#### 请求参数格式: *JSON: Map*
+
+#### 请求参数详情:
+- 以下为公共参数：
+
+参数名 | 类型 | 含义 | 描述 | 示例 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+bill_id| String | 发起支付时，返回的id | 发起支付时，返回的id | 0250c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息，有错误时，不会返回pay结果
+pay\_status  | String | 支付状态，true代表支付成功， false代表支付失败
